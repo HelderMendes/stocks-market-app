@@ -5,6 +5,12 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Renders the avatar root element with standardized styling and a `data-slot="avatar"` attribute.
+ *
+ * @param className - Additional CSS class names to merge with the component's default avatar styles
+ * @returns The AvatarPrimitive.Root element with combined class names and `data-slot="avatar"`
+ */
 function Avatar({
   className,
   ...props
@@ -21,6 +27,12 @@ function Avatar({
   )
 }
 
+/**
+ * Renders a styled avatar image element used as the avatar's image slot.
+ *
+ * @param className - Additional CSS classes to apply to the image element
+ * @returns A React element for the avatar image with `data-slot="avatar-image"` and composed styling
+ */
 function AvatarImage({
   className,
   ...props
@@ -34,6 +46,12 @@ function AvatarImage({
   )
 }
 
+/**
+ * Renders a styled avatar fallback element shown when the avatar image is unavailable.
+ *
+ * @param className - Additional CSS class names to merge with the component's default styles
+ * @returns The AvatarPrimitive.Fallback element with merged `className` and `data-slot="avatar-fallback"`
+ */
 function AvatarFallback({
   className,
   ...props

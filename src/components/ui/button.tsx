@@ -36,6 +36,15 @@ const buttonVariants = cva(
   }
 );
 
+/**
+ * Render a styled button-like React element that applies the chosen visual variant and size and forwards remaining props.
+ *
+ * @param props.className - Additional CSS classes merged with the computed variant/size classes.
+ * @param props.variant - Visual variant to apply (controls color, outline, and interaction styles).
+ * @param props.size - Size variant to apply (controls padding and height).
+ * @param props.asChild - When true, render a Radix Slot so the caller provides the underlying element instead of a native `button`.
+ * @returns The rendered React element with computed className and all other props forwarded.
+ */
 function Button({
   className,
   variant,

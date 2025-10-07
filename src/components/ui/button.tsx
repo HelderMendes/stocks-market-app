@@ -51,10 +51,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(
-        buttonVariants({ variant, size, className }),
-        'bg-[linear-gradient(180deg,_#FDD458_0%,_#E8BA40_100%)]'
-      )}
+      className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
   );

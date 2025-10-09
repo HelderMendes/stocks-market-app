@@ -42,7 +42,13 @@ const SignInPage = () => {
           placeholder="Your full name"
           register={register} //Hook form register function
           error={errors.fullName} //Hook form error message
-          validation={{ required: 'Full name is required', minLength: 2 }} //Validation rules
+          validation={{
+            required: 'Full name is required',
+            minLength: {
+              value: 2,
+              message: 'Full name must be at least 2 characters'
+            }
+          }}
         />
         <InputField
           name="email"

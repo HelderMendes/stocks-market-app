@@ -75,7 +75,10 @@ const SignUpPage = () => {
             error={errors.password}
             validation={{
               required: 'Password is required',
-              minLength: 8,
+              minLength: {
+                value: 8,
+                message: 'Password must be at least 8 characters',
+              },
             }}
           />
           <button

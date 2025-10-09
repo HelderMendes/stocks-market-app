@@ -27,7 +27,7 @@ const SignUpPage = () => {
       password: '',
       country: 'NL',
       investmentGoals: 'Growth',
-      riskTolerance: 'Crypto',
+      riskTolerance: 'Medium',
     },
     mode: 'onBlur',
   });

@@ -28,6 +28,7 @@ const SignUpPage = () => {
       country: 'NL',
       investmentGoals: 'Growth',
       riskTolerance: 'Medium',
+      preferredIndustry: 'Technology',  
     },
     mode: 'onBlur',
   });

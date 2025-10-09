@@ -27,7 +27,7 @@ const SignInPage = () => {
     try {
       console.log(data);
     } catch (error) {
-      console.error('Error during sign up: ', error);
+      console.error('Error during sign in: ', error);
     }
   };
 

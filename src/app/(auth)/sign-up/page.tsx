@@ -28,7 +28,7 @@ const SignUpPage = () => {
       country: 'NL',
       investmentGoals: 'Growth',
       riskTolerance: 'Medium',
-      preferredIndustry: 'Technology',  
+      preferredIndustry: 'Technology',
     },
     mode: 'onBlur',
   });
@@ -62,7 +62,7 @@ const SignUpPage = () => {
           error={errors.email}
           validation={{
             required: 'Email is required',
-            pattern: /^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
+            pattern: /^[a-zA-Z0-9_.+-git c]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
             message: 'Please enter a valid email address',
           }}
         />
@@ -142,7 +142,7 @@ const SignUpPage = () => {
         <FooterLink
           text="Already have an account?"
           linkText="Sign In"
-          href="sign-in"
+          href={'/sign-in'}
         />
       </form>
     </>

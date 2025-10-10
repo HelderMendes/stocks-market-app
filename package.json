@@ -2,11 +2,15 @@
   "name": "stocks",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:db": "node test-db-connection.js",
+    "test:db-app": "node test-app-db-logic.js",
+    "test:db-all": "echo 'Running all database tests...' && npm run test:db && echo '\\n--- Testing app function ---\\n' && npm run test:db-app"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
@@ -16,7 +20,10 @@
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "lucide-react": "^0.544.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.1",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",

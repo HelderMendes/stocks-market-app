@@ -132,7 +132,7 @@ const SignInPage = () => {
         >
           {isSubmitting ? 'Signing In...' : 'Sign In to Your Account'}
         </button>
-        <FooterLink text="No account?" linkText="Sign Up" href="sign-up" />
+        <FooterLink text="No account?" linkText="Sign Up" href="/sign-up" />
       </form>
     </>
   );

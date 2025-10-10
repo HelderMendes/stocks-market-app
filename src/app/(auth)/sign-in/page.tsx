@@ -18,6 +18,7 @@ const SignInPage = () => {
       fullName: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
     mode: 'onBlur',
   });
@@ -46,8 +47,8 @@ const SignInPage = () => {
             required: 'Full name is required',
             minLength: {
               value: 2,
-              message: 'Full name must be at least 2 characters'
-            }
+              message: 'Full name must be at least 2 characters',
+            },
           }}
         />
         <InputField
@@ -59,7 +60,7 @@ const SignInPage = () => {
           error={errors.email}
           validation={{
             required: 'Email is required',
-            pattern: /^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
+            pattern: /^[a-zA-Z0-9_\-+.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
             message: 'Please enter a valid email address',
           }}
         />
@@ -108,7 +109,7 @@ const SignInPage = () => {
                 message: 'Password must be at least 8 characters',
               },
               validate: (value: string | null) =>
-                value === password || 'Passwords do not match',
+                !value || value === password || 'Passwords do not match',
             }}
           />
           <button

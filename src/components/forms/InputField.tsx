@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 import React from 'react';
+import { Input } from '@/components/ui/input';
 
 const InputField = ({
   name,
@@ -18,7 +19,7 @@ const InputField = ({
       <Label htmlFor={name} className="form-label">
         {label}
       </Label>
-      <input
+      <Input
         type={type}
         id={name}
         placeholder={placeholder}

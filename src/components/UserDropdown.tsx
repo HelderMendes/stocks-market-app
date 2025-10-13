@@ -12,15 +12,16 @@ import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { LogOut } from 'lucide-react';
-import NavItems from './NavItems';
+import { signOut } from '@/lib/actions/auth.actions';
 
-const UserDropdown = () => {
+const UserDropdown = ({ user }: { user: User }) => {
   const router = useRouter();
   const handleSignOut = async () => {
+    await signOut();
     router.push('/sign-in');
   };
 
-  const user = { name: 'Helder Mendes', email: 'info@helderdesign.nl' };
+  // const user = { name: 'Helder Mendes', email: 'info@helderdesign.nl' };
 
   return (
     <DropdownMenu>

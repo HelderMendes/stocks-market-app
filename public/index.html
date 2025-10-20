@@ -1,0 +1,571 @@
+Return-Path: <cmhelder09@gmail.com>
+  Delivered-To: info@helderdesign.nl
+  Received: from mx4.cst.mailpod14-cph3.one.com ([10.27.64.14])
+  by mailstorage9.cst.mailpod14-cph3.one.com with LMTP
+  id MIucFjp79mhYCwAAOwbqkg
+  (envelope-from <cmhelder09@gmail.com>)
+    for <info@helderdesign.nl>; Mon, 20 Oct 2025 18:11:06 +0000
+      DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+      d=custmx.one.com; s=20201015;
+      h=content-type:mime-version:date:message-id:subject:to:from:x-halone-refid:
+      x-halone-sa:from:x-halone-sa:x-halone-refid;
+      bh=0SAQFcp3LJAqd8YpJ1ZLEUbt3r1WZ4epmhw2PSOUD9Y=;
+      b=WyAbuODjLX1pb+qSFtGSLwd6dGL9duvxaaBnMx8+FxP/6A22HejaGvjiYfgKCaNRBefveFdlVVomZ
+      aw8G8owrHQNHeXCR4FkDmNAnfiq4AwO114KH1AHbM50pcT5Qhlmgwt5Dfn5YuI3x9P49rj/9WrnDKZ
+      HLd626wr+14pftOkqjW0cEum4xzH3NRnoI+jCkXhPlWYPkR3pi9X6A9VgLz/DhSd8O/JGgJRwCXkTn
+      WAWLOzEmB5h5GIajpGgEhHONv1ZQnnj0ePqV5Y481cVQrOXPPwae6bT6RDp4M0Uvf35TijasjgMHm8
+      FH3ohwgalYptDB9WHMkCMxiBHV8402Q==
+      X-HalOne-SA: 2.5
+      X-HalOne-RefID: 155866::1760983866-3299A360-F3623EFF/0/0
+      X-HalOne-Spam-Probability: 0.076
+      Authentication-Results: mx4.pub.mailpod14-cph3.one.com;
+      spf=pass smtp.mailfrom=gmail.com smtp.remote-ip=209.85.218.45;
+      dkim=pass header.d=gmail.com header.s=20230601 header.a=rsa-sha256 header.b=Uh+QAw5+;
+      dmarc=pass header.from=gmail.com;
+      X-HalOne-ID: 2545c60b-ade0-11f0-b9b8-208810c0d568
+      Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+      by mx4.pub.mailpod14-cph3.one.com (Halon) with ESMTPS
+      id 2545c60b-ade0-11f0-b9b8-208810c0d568;
+      Mon, 20 Oct 2025 18:11:06 +0000 (UTC)
+      Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b3b27b50090so842152366b.0
+      for <info@helderdesign.nl>; Mon, 20 Oct 2025 11:11:05 -0700 (PDT)
+        DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760983865; x=1761588665; darn=helderdesign.nl;
+        h=mime-version:date:message-id:subject:to:from:from:to:cc:subject
+        :date:message-id:reply-to;
+        bh=0SAQFcp3LJAqd8YpJ1ZLEUbt3r1WZ4epmhw2PSOUD9Y=;
+        b=Uh+QAw5+F29QO48MZMZ4uum4LWZaQ/mgnuA8naxpMAkQZMcl4hzXKr0Q+wpAFRSYW1
+        AO3/PvE2PARVJSvaIfdbeXAgW7sKuOwBBFxp/X7aoLJezNQ7Y0jLchMBVOe2bD11OvNC
+        PguXXE1pZSm2ToEe7xbHXM+tpkVZN3STjGWgO+5/U9K7AQh7PVE+IDVL1ryHw9UE5ZZ9
+        VM5w0USJMqDEmo+GRza30TuI/rtNeIg4JuSY4TFTcR2VkS97mHZ/UyOZ/TvQaqzrJmPM
+        sRmuEI2BJZpsqATFaqZF14v0EMz/Ss+Xo+YuE/7hLtQCqkE+i8gtOwXsoppF7BL3RVt+
+        QjOA==
+        X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760983865; x=1761588665;
+        h=mime-version:date:message-id:subject:to:from:x-gm-message-state
+        :from:to:cc:subject:date:message-id:reply-to;
+        bh=0SAQFcp3LJAqd8YpJ1ZLEUbt3r1WZ4epmhw2PSOUD9Y=;
+        b=HsQq9vDrpz2uqi6wVGO19dC0F96fmMKJtOUcRUqkh7XIfxN7n/A5cNWWcTFpMYGQEg
+        3DrbBB8yJvyw1fVsKCZmoW745jAYTEj583zJjfakZ2Cf74aRmd5X921lgxRS7Q3WyjlD
+        Sz3KmdKVXsu2Ct8uQB+LJ0lXv0BvMLk/3xVMdY6ObVFcZfkW6Bs7ctdKL8ohbPGjCWN6
+        86Yb4adSq8rNZlGK315SRJLj18pssSEoL+8t4qrhCPaqCNB7yEbUw7Jk/ZBWV+DTtrWw
+        vY4mDqg+RwLQIAx0H4RWQHlknjrBf5WE1VUbQRMsBFYQiWHCLeolIljM7b+pTyGfM5Mq
+        7Wow==
+        X-Gm-Message-State: AOJu0YxcqhiwNdCYnaxcbz+i5bxTOisoevACV3HQlTR+6BEQzJ9gVyPE
+        DtlLI52zW5lW+ZESJk93AapairVhCTWEXFzcJIMdkgF1sVWVWjF9+BoOCRTIKRTt
+        X-Gm-Gg: ASbGncvprkvBfJh2DavHtz5vg179T0xNXhQEQWq1LVGN+GLY5+DQ3+OG6RYk2jZJ+St
+        c6SfCGYSr/oBqahH53hyO9Noa7a9+CY4/hF2Mod+pFudhX6Vw5aeXPoiW8j8fDpEB/xAjS0+cgP
+        MqM8fanMUe2pKCJWppny2JIRC1djl+rUjivCr20j9TWRn3blMqBcuiso/luwEajtQFdX+3k2/cD
+        w7j92JKAMTQ+plZTo458Sc2og1/ZGKkRwVe70tTwWMq8wJ+YUinP7dyjLSyK1Q1+MdA+JmI/xlq
+        Pvoq/eCpQl5RHAOAguvpdmtbi5LYIGnF2cIInN8tImVyYeRttOR2a7zvalcv3dPeS0Wo06MpZj+
+        rL2fjmeaBsaruHVTAVFMe3XVhfLQo9UnxaepMPoSMcJkYhhfw0EIwuApoEENhDJEtNBatRhEqQv
+        VLUrg9su56tQmH9pQmoz534R8GSCtniFDaISWiYklgQhDq2fWBCZDZ2mWmga9F
+        X-Google-Smtp-Source: AGHT+IF8SZzxHrt4f4eM8ZLz1EwSCyTFZc5CgGHAYG15NmFQe+uPkV6s3uMB5HFIIDerBSo8WsSJDg==
+        X-Received: by 2002:a17:907:948f:b0:b57:2b82:732b with SMTP id
+        a640c23a62f3a-b6475706215mr1634740266b.54.1760983864857;
+        Mon, 20 Oct 2025 11:11:04 -0700 (PDT)
+        Return-Path: <cmhelder09@gmail.com>
+          Received: from Helders-iMac.local (77-175-236-245.fixed.kpn.net. [77.175.236.245])
+          by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65ebc42963sm858389966b.77.2025.10.20.11.11.02
+          for <info@helderdesign.nl>
+            (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+            Mon, 20 Oct 2025 11:11:03 -0700 (PDT)
+            From: Stock Tracker <cmhelder09@gmail.com>
+              To: info@helderdesign.nl
+              Subject: =?UTF-8?Q?Your_Daily_Market_Summary_=E2=80=93_Key_?=
+              =?UTF-8?Q?Updates_Inside_=F0=9F=93=8A?=
+              Message-ID: <a120a9e8-2af6-f814-64ad-e56b552943c9@gmail.com>
+                Date: Mon, 20 Oct 2025 18:11:01 +0000
+                MIME-Version: 1.0
+                Content-Type: multipart/alternative;
+                boundary="--_NmP-8f89d6c9d8a85cb8-Part_1"
+
+                ----_NmP-8f89d6c9d8a85cb8-Part_1
+                Content-Type: text/plain; charset=utf-8
+                Content-Transfer-Encoding: quoted-printable
+
+                Hello Ant=C3=B3nio Correia,
+
+                Here's your daily market summary with the =
+                latest news and updates.
+
+                Best regards,
+                Stock Tracker Team
+                ----_NmP-8f89d6c9d8a85cb8-Part_1
+                Content-Type: text/html; charset=utf-8
+                Content-Transfer-Encoding: quoted-printable
+
+                <!DOCTYPE html>
+                <html lang=3D"en">
+
+                <head>
+                  <meta charset=3D"UTF-8">
+                  <meta name=3D"viewport" content=3D"width=3Ddevice-width,=initial-scale=3D1.0">
+                  <meta name=3D"format-detection"=content=3D"telephone=3Dno">
+                  <meta name=3D"x-apple-disable-message-refor=matting">
+                  <title>Market News Summary Today</title>
+                  <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:AllowPNG/>
+                <o:PixelsPerInch>96</o:Pixels=
+PerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+                  <style type=3D"text/css">
+                    /* Dark mode styles */
+                    @media (prefers-color-scheme: dark)= {
+                      .email-container {
+                        background-color: #141414= !important;
+                        border: 1px solid #30333A !important;
+                      }
+
+                      .dark-bg {
+                        background-color: =#050505 !important;
+                      }
+
+                      .dark-text {
+                        color: #ffffff !important;
+                      }
+
+                      .dark-text-secondary {
+                        color: #9ca3af !=important;
+                      }
+
+                      .dark-text-muted {
+                        color: #6b7280 !important;
+                      }
+
+                      .dark-border {
+                        border-color: #30333A !=important;
+                      }
+
+                      .dark-cta {
+                        =background-color: #1f2937 !important;
+                        border: 1px solid=#374151 !important;
+                      }
+                    }
+
+                    =20 @media only screen and (max-width: 950px) {
+                      .email-container {
+                        width: 100% !important;
+                        margin: 0 !important;
+                      }
+
+                      .mobile-padding {
+                        padding: 24px !important;
+                      }
+
+                      .mobile-header-padding {
+                        padding: =24px 24px 12px 24px !important;
+                      }
+
+                      .mobile-text {
+                        font-size: 14px !important;
+                        line-height: 1.=5 !important;
+                      }
+
+                      .mobile-title {
+                        font-size: 24px !important;
+                        line-height: 1.=3 !important;
+                      }
+
+                      .mobile-news-title {
+                        font-size: 16px !important;
+                        line-height: 1.=3 !important;
+                      }
+
+                      .mobile-outer-padding {
+                        padding: 20px 10px !important;
+                      }
+                    }
+
+                    @media only screen and (max-width: 550px) {
+                      .mobile-title {
+                        font-size: 22px !important;
+                      }
+
+                      .mobile-padding {
+                        padding: 15px !=important;
+                      }
+
+                      .mobile-header-padding {
+                        padding: 15px 15px 8px 15px !important;
+                      }
+                    }
+                  </style>
+                </head>
+
+                <body style=3D"margin: 0; padding: 0;=background-color: #050505; font-family: -apple-system,
+                  BlinkMacSystemFont,='Segoe UI' , Roboto, sans-serif;">
+                  <table role=3D"presentation"=cellspacing=3D"0" cellpadding=3D"0" border=3D"0"
+                    width=3D"100%"=style=3D"background-color: #050505;">
+                    <tr>
+                      <td=align=3D"center" class=3D"mobile-outer-padding" style=3D"padding: 40px=20px;">
+                        <table role=3D"presentation" cellspacing=3D"0"=cellpadding=3D"0" border=3D"0" width=3D"100%"
+                          class=3D"email-container"=style=3D"max-width: 950px; background-color: #141414; border-radius:
+                          8px;=border: 1px solid #30333A;">
+                          =20
+                          <!-- Header with Logo -->
+                          <tr>
+                            <td align=3D"left" class=3D"mobile-header-padding"=style=3D"padding: 40px 40px 20px 40px;">
+                              <img=src=3D"http: //localhost:3000/assets/images/logo.png" alt=3D"Stock Tracker=Logo"
+                                width=3D"150" style=3D"max-width: 100%; height: auto;">
+                            </td>
+                          </tr>
+                          =20
+                          <!-- Main Content -->
+                          <tr>
+                            <td=class=3D"mobile-padding" style=3D"padding: 40px 40px 40px 40px;">
+                              =20
+                              <!-- Header -->
+                              <h1 class=3D"mobile-title dark-text"=style=3D"margin: 0 0 20px 0; font-size: 24px;
+                                font-weight: 600; color:=#FDD458; line-height: 1.2;">
+                                Market News =
+                                Summary Today
+                              </h1>
+                              =
+                              =20
+                              <!-- Date -->
+                              =
+                              <p class=3D"mobile-text dark-text-muted" style=3D"margin: 0 0 30px 0;=font-size: 14px;
+                                line-height: 1.4; color: #CCDADD;">
+                                Mon, 20 Oct 2025
+                                =
+                              </p>
+                              =20
+                              <!-- News Summary -->
+                              Here's the clean HTML content for
+                              your market news summary email:
+
+                              <h3 class=3D"mobile-news-title dark-text"=style=3D"margin: 30px 0 15px 0; font-size: 18px;
+                                font-weight: 600; color:=#f8f9fa; line-height: 1.3;">=F0=9F=93=88 Market Highlights</h3>
+
+                              <div class=3D"dark-info-box" style=3D"background-color: #212328; padding:=24px; margin:
+                                20px 0; border-radius: 8px;">
+                                <h4 class=3D"dark-text"=style=3D"margin: 0 0 16px 0; font-size: 18px; font-weight: 600;
+                                  color:=#FFFFFF; line-height: 1.4;">
+                                  With Apple stock near a record high as =
+                                  earnings loom, here's the options trade to make
+                                </h4>
+
+                                <ul style=3D"margin: 16px 0 20px 0; padding-left: 0; margin-left: 0;=list-style: none;">
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0=0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>
+                                    <strong=style=3D"color: #FDD458;">AAPL</strong> shares
+                                      typically rise in Q4 - up 7.=
+                                      6% on average over past 5 years.
+                                  </li>
+                                  <li class=3D"dark-text-secondary=" style=3D" margin: 0 0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                    <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>Opt=
+                                    ions traders suggest buying calls for December to capitalize on seasonal =
+                                    trend.
+                                  </li>
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0 0=16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>Stock currently =
+                                    trading near $180, just 2.4% below all-time high.
+                                  </li>
+                                </ul>
+
+                                <div style=3D"background-color: #141414; border: 1px solid #374151;=padding: 15px;
+                                  border-radius: 6px; margin: 16px 0;">
+                                  <p class=3D"dark-text-secondary" style=3D"margin: 0; font-size: 14px;=color: #CCDADC;
+                                    line-height: 1.4;">=F0=9F=92=A1 <strong style=3D"color:=#FDD458;">Bottom
+                                      Line:</strong> Apple's stock often does well at year-end, =
+                                    making this a good time for investors to consider their position before =
+                                    earnings.</p>
+                                </div>
+
+                                <div style=3D"margin: 20px 0 0 0;">
+                                  <a href=3D"https://www.marketwatch.com/story/with-apple-stock-near-a-record=-high-as-earnings-loom-heres-the-options-trade-to-make-73ef26ae"=style=3D"color:
+                                    #FDD458; text-decoration: none; font-weight: 500;=font-size: 14px;"
+                                    target=3D"_blank" rel=3D"noopener noreferrer">Read Full =
+                                    Story =E2=86=92</a>
+                                </div>
+                              </div>
+
+                              <div class=3D"dark-info-box"=style=3D"background-color: #212328; padding: 24px; margin:
+                                20px 0;=border-radius: 8px;">
+                                <h4 class=3D"dark-text" style=3D"margin: 0 0 16px 0;=font-size: 18px; font-weight: 600;
+                                  color: #FFFFFF; line-height: 1.4;">
+                                  AstraZeneca hails major breakthroughs with breast-cancer drugs
+                                </h4>
+
+                                <ul style=3D"margin: 16px 0 20px 0; padding-left: 0; margin-left: 0;=list-style: none;">
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0=0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>
+                                    <strong=style=3D"color: #FDD458;">AZN</strong>'s new drugs
+                                      could generate $10 =
+                                      billion in annual revenue.
+                                  </li>
+                                  <li class=3D"dark-text-secondary"=style=3D"margin: 0 0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                    <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>Dru=
+                                    gs show promise in treating aggressive forms of breast cancer.
+                                  </li>
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0 0 16px 0; padding:=0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold; font-size: 20px;=margin-right:
+                                      8px;">=E2=80=A2</span>Company positioning itself as leader in=
+                                    oncology treatments.
+                                  </li>
+                                </ul>
+
+                                <div style=3D"background-color:=#141414; border: 1px solid #374151; padding: 15px;
+                                  border-radius: 6px;=margin: 16px 0;">
+                                  <p class=3D"dark-text-secondary" style=3D"margin: 0;=font-size: 14px; color: #CCDADC;
+                                    line-height: 1.4;">=F0=9F=92=A1 <strong=style=3D"color: #FDD458;">Bottom
+                                      Line:</strong> This breakthrough could =
+                                      make AstraZeneca a strong long-term investment in the healthcare sector.=
+                                  </p>
+                                </div>
+
+                                <div style=3D"margin: 20px 0 0 0;">
+                                  <a href=3D"https://www.=marketwatch.com/story/astrazeneca-hails-major-breakthroughs-with-breast-can=cer-drugs-7a61ba96"
+                                    style=3D"color: #FDD458; text-decoration: none;=font-weight: 500; font-size: 14px;"
+                                    target=3D"_blank" rel=3D"noopener=noreferrer">Read Full Story =E2=86=92</a>
+                                </div>
+                              </div>
+
+                              <div style=3D"border-top: 1px solid #374151; margin: 32px 0 24px 0;"></div>
+
+                              <h3 class=3D"mobile-news-title dark-text" style=3D"margin: 30px 0 15px 0;=font-size: 18px;
+                                font-weight: 600; color: #f8f9fa; line-height: 1.=3;">=F0=9F=8F=9B=EF=B8=8F Economic
+                                Outlook</h3>
+
+                              <div=class=3D"dark-info-box" style=3D"background-color: #212328; padding: 24px;=margin:
+                                20px 0; border-radius: 8px;">
+                                <h4 class=3D"dark-text"=style=3D"margin: 0 0 16px 0; font-size: 18px; font-weight: 600;
+                                  color:=#FFFFFF; line-height: 1.4;">
+                                  U.S. stocks remain a strong bet, thanks to a =
+                                  resilient consumer, says this European wealth manager
+                                </h4>
+
+                                <ul style=3D"margin: 16px 0 20px 0; padding-left: 0; margin-left: 0;=list-style: none;">
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0=0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>American consumers =
+                                    continue spending despite inflation concerns.
+                                  </li>
+                                  <li class=3D"dark-text-secondary" style=3D"margin: 0 0 16px 0; padding:=0;
+                                    margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
+                                    <span style=3D"color: #FDD458; font-weight: bold; font-size: 20px;=margin-right:
+                                      8px;">=E2=80=A2</span>Corporate earnings holding up better =
+                                    than expected in Q3.
+                                  </li>
+                                  <li class=3D"dark-text-secondary"=style=3D"margin: 0 0 16px 0; padding: 0;
+                                    margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                    <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                      8px;">=E2=80=A2</span>Int=
+                                    ernational investors see U.S. as "safe haven" amid global uncertainty.
+                                  </li>
+                                </ul>
+
+                                <div style=3D"background-color: #141414; border: 1px solid=#374151; padding: 15px;
+                                  border-radius: 6px; margin: 16px 0;">
+                                  <p class=3D"dark-text-secondary" style=3D"margin: 0; font-size: 14px;=color: #CCDADC;
+                                    line-height: 1.4;">=F0=9F=92=A1 <strong style=3D"color:=#FDD458;">Bottom
+                                      Line:</strong> The U.S. market continues to attract global=
+                                    investors despite economic headwinds, making domestic stocks relatively =
+                                    stable.</p>
+                                </div>
+
+                                <div style=3D"margin: 20px 0 0 0;">
+                                  <a href=3D"https://www.marketwatch.com/story/u-s-stocks-remain-a-strong-bet=-thanks-to-a-resilient-consumer-says-this-european-wealth-manager-ccaca898"=style=3D"color:
+                                    #FDD458; text-decoration: none; font-weight: 500;=font-size: 14px;"
+                                    target=3D"_blank" rel=3D"noopener noreferrer">Read Full =
+                                    Story =E2=86=92</a>
+                                </div>
+                                </div>
+
+                                <div class=3D"dark-info-box"=style=3D"background-color: #212328; padding: 24px; margin:
+                                  20px 0;=border-radius: 8px;">
+                                  <h4 class=3D"dark-text" style=3D"margin: 0 0 16px 0;=font-size: 18px; font-weight:
+                                    600; color: #FFFFFF; line-height: 1.4;">
+                                    The Fed has a big decision to make without key data. Here's what it could =
+                                    do.
+                                  </h4>
+
+                                  <ul style=3D"margin: 16px 0 20px 0; padding-left: 0;=margin-left: 0; list-style:
+                                    none;">
+                                    <li class=3D"dark-text-secondary"=style=3D"margin: 0 0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Fed=
+                                      eral Reserve divided on whether to raise rates again this year.
+                                    </li>
+                                    <li class=3D"dark-text-secondary" style=3D"margin: 0 0 16px 0; padding:=0;
+                                      margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458; font-weight: bold; font-size: 20px;=margin-right:
+                                        8px;">=E2=80=A2</span>Decision complicated by government =
+                                      shutdown delaying economic data.
+                                    </li>
+                                    <li class=3D"dark-text-secondary=" style=3D" margin: 0 0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Mos=
+                                      t analysts expect rates to hold steady in November meeting.
+                                    </li>
+                                  </ul>
+
+                                  <div style=3D"background-color: #141414; border: 1px solid #374151;=padding: 15px;
+                                    border-radius: 6px; margin: 16px 0;">
+                                    <p class=3D"dark-text-secondary" style=3D"margin: 0; font-size: 14px;=color:
+                                      #CCDADC; line-height: 1.4;">=F0=9F=92=A1 <strong style=3D"color:=#FDD458;">Bottom
+                                        Line:</strong> Investors should prepare for potential =
+                                      market volatility around Fed decisions, but rates likely won't change until=
+                                      2024.</p>
+                                  </div>
+
+                                  <div style=3D"margin: 20px 0 0 0;">
+                                    <a href=3D"https://www.marketwatch.com/story/the-fed-has-a-big-decision-to-=make-without-key-data-heres-what-it-could-do-929e1949"
+                                      style=3D"color:=#FDD458; text-decoration: none; font-weight: 500; font-size:
+                                      14px;"=target=3D"_blank" rel=3D"noopener noreferrer">Read Full Story =E2=86=92</a>
+                                  </div>
+                                </div>
+
+                                <div style=3D"border-top: 1px solid #374151; margin: 32px 0=24px 0;"></div>
+
+                                <h3 class=3D"mobile-news-title dark-text" style=3D"margin:=30px 0 15px 0; font-size:
+                                  18px; font-weight: 600; color: #f8f9fa;=line-height: 1.3;">=F0=9F=92=BC Personal
+                                  Finance</h3>
+
+                                <div class=3D"dark-info-box" style=3D"background-color: #212328; padding:=24px; margin:
+                                  20px 0; border-radius: 8px;">
+                                  <h4 class=3D"dark-text"=style=3D"margin: 0 0 16px 0; font-size: 18px; font-weight:
+                                    600; color:=#FFFFFF; line-height: 1.4;">
+                                    'I would like to know the truth': My =
+                                    stepgrandmother told me she left me her IRA. How do I find it?
+                                  </h4>
+
+                                  <ul style=3D"margin: 16px 0 20px 0; padding-left: 0; margin-left: 0;=list-style:
+                                    none;">
+                                    <li class=3D"dark-text-secondary" style=3D"margin: 0=0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                      <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Check with the =
+                                      deceased's financial institutions directly.
+                                    </li>
+                                    <li class=3D"dark-text-secondary" style=3D"margin: 0 0 16px 0; padding:=0;
+                                      margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458; font-weight: bold; font-size: 20px;=margin-right:
+                                        8px;">=E2=80=A2</span>Review estate documents and will for =
+                                      beneficiary designations.
+                                    </li>
+                                    <li class=3D"dark-text-secondary"=style=3D"margin: 0 0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Con=
+                                      sider hiring probate attorney if estate settlement is complex.
+                                    </li>
+                                  </ul>
+
+                                  <div style=3D"background-color: #141414; border: 1px solid #374151;=padding: 15px;
+                                    border-radius: 6px; margin: 16px 0;">
+                                    <p class=3D"dark-text-secondary" style=3D"margin: 0; font-size: 14px;=color:
+                                      #CCDADC; line-height: 1.4;">=F0=9F=92=A1 <strong style=3D"color:=#FDD458;">Bottom
+                                        Line:</strong> Inherited IRAs can be valuable assets, but =
+                                      tracking them down requires persistence and often professional help.</p>
+                                  </div>
+
+                                  <div style=3D"margin: 20px 0 0 0;">
+                                    <a href=3D"https://www.=marketwatch.com/story/i-would-like-to-know-the-truth-my-stepgrandmother-tol=d-me-she-left-me-her-ira-how-do-i-find-it-4340924b"
+                                      style=3D"color:=#FDD458; text-decoration: none; font-weight: 500; font-size:
+                                      14px;"=target=3D"_blank" rel=3D"noopener noreferrer">Read Full Story =E2=86=92</a>
+                                  </div>
+                                </div>
+
+                                <div class=3D"dark-info-box" style=3D"background-color:=#212328; padding: 24px; margin:
+                                  20px 0; border-radius: 8px;">
+                                  <h4 class=3D"dark-text" style=3D"margin: 0 0 16px 0; font-size: 18px;=font-weight:
+                                    600; color: #FFFFFF; line-height: 1.4;">
+                                    'A friend calls it the everything bubble': Why do so many economists fear a=
+                                    1929-style crash?
+                                  </h4>
+
+                                  <ul style=3D"margin: 16px 0 20px 0; padding-left:=0; margin-left: 0; list-style:
+                                    none;">
+                                    <li class=3D"dark-text-secondary"=style=3D"margin: 0 0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px;=line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458;=font-weight: bold; font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Mul=
+                                      tiple asset classes (stocks, real estate, crypto) at historically high =
+                                      valuations.
+                                    </li>
+                                    <li class=3D"dark-text-secondary" style=3D"margin: 0=0 16px 0; padding: 0;
+                                      margin-left: 0; font-size: 16px; line-height: 1.6;=color: #CCDADC;">
+                                      <span style=3D"color: #FDD458; font-weight: bold;=font-size: 20px; margin-right:
+                                        8px;">=E2=80=A2</span>Economists worry about=
+                                      "domino effect" if one market collapses.
+                                    </li>
+                                    <li=class=3D"dark-text-secondary" style=3D"margin: 0 0 16px 0; padding:
+                                      0;=margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
+                                      <span style=3D"color: #FDD458; font-weight: bold; font-size: 20px;=margin-right:
+                                        8px;">=E2=80=A2</span>Current safeguards (FDIC, circuit =
+                                      breakers) make 1929-style crash unlikely.
+                                      </li>
+                                  </ul>
+
+                                  <div style=3D"background-color: #141414; border: 1px solid #374151;=padding: 15px;
+                                    border-radius: 6px; margin: 16px 0;">
+                                    <p class=3D"dark-text-secondary" style=3D"margin: 0; font-size: 14px;=color:
+                                      #CCDADC; line-height: 1.4;">=F0=9F=92=A1 <strong style=3D"color:=#FDD458;">Bottom
+                                        Line:</strong> While markets appear overvalued in many =
+                                      areas, modern regulations make a complete collapse much less likely than in=
+                                      1929.</p>
+                                  </div>
+
+                                  <div style=3D"margin: 20px 0 0 0;">
+                                    <a href=3D"https://www.marketwatch.com/story/a-friend-calls-it-the-everythi=ng-bubble-why-do-so-many-economists-fear-a-1929-style-crash-084df040"=style=3D"color:
+                                      #FDD458; text-decoration: none; font-weight: 500;=font-size: 14px;"
+                                      target=3D"_blank" rel=3D"noopener noreferrer">Read Full =
+                                      Story =E2=86=92</a>
+                                  </div>
+                                </div>
+                                =20
+                                <!-- Footer Text -->
+                                =
+                                <div style=3D"text-align: center; margin: 40px 0 0 0;">
+                                  <p style=3D"margin: 0 0 10px 0; font-size:=14px; line-height: 1.5; color: #CCDADC
+                                    !important;">
+                                    You're receiving this because you =
+                                    subscribed to Stock Tracker news updates.
+                                    =
+                                  </p>
+                                  <p style=3D"margin: 0 0 10px 0;=font-size: 14px; line-height: 1.5; color: #CCDADC
+                                    !important;">
+                                    <a href=3D"#" style=3D"color: #CCDADC !=important; text-decoration:
+                                      underline;">Unsubscribe</a> |=20
+                                    <a href=3Dhttp://localhost:3000=style=3D"color: #CCDADC !important; text-decoration:
+                                      underline;">Visit =
+                                      Stock Tracker</a>
+                                  </p>
+                                  <p style=3D"margin: 0; font-size: 14px;=line-height: 1.5; color: #CCDADC !important;">
+                                    =
+                                    =C2=A9 2025 Stock Tracker
+                                  </p>
+                                </div>
+                                </td>
+                          </tr>
+                          =20
+                        </table>
+                        </td>
+                    </tr>
+                  </table>
+                </body>
+
+                </html>
+                ----_NmP-8f89d6c9d8a85cb8-Part_1--

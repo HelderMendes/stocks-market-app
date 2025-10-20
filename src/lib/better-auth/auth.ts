@@ -1,5 +1,5 @@
 import { betterAuth } from 'better-auth';
-import dbConnect from '@/database/mongoose';
+import dbConnection from '@/database/mongoose';
 import { mongodbAdapter } from 'better-auth/adapters/mongodb';
 import { nextCookies } from 'better-auth/next-js';
 import { Db } from 'mongodb';
@@ -7,7 +7,7 @@ import { Db } from 'mongodb';
 let authInstance: ReturnType<typeof betterAuth> | null = null;
 
 export const getAuth = async () => {
-  const mongoose = await dbConnect();
+  const mongoose = await dbConnection();
   const db = mongoose.connection.db;
 
   if (!db) throw new Error('Database connection is not established');

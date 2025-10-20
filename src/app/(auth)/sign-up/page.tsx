@@ -65,7 +65,7 @@ const SignUpPage = () => {
         <InputField
           name="fullName"
           label="Full Name"
-          placeholder="Helder Mendes"
+          placeholder="Your name"
           register={register} //Hook form register function
           error={errors.fullName} //Hook form error message
           validation={{ required: 'Full name is required', minLength: 2 }} //Validation rules

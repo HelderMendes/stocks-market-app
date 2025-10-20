@@ -226,6 +226,25 @@ declare global {
     threshold: number;
     changePercent?: number;
   };
+
+  type StockProfile = {
+    name?: string;
+    ticker?: string;
+    exchange?: string;
+    country?: string;
+    currency?: string;
+    ipo?: string;
+    marketCapitalization?: number;
+    shareOutstanding?: number;
+    logo?: string;
+    phone?: string;
+    weburl?: string;
+    finnhubIndustry?: string;
+  };
+
+  type FinnhubSearchResultWithExchange = FinnhubSearchResult & {
+    __exchange?: string;
+  };
 }
 
 export {};

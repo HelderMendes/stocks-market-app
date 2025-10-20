@@ -1,5 +1,5 @@
 // Simple test to run in your Next.js app
-import dbConnect from '@/database/mongoose';
+import dbConnection from '@/database/mongoose';
 
 export default async function TestDB() {
   let connectionStatus = 'Not tested';
@@ -7,7 +7,7 @@ export default async function TestDB() {
 
   try {
     console.log('Testing database connection...');
-    await dbConnect();
+    await dbConnection();
     connectionStatus = 'Connected successfully!';
     console.log('Database connection successful!');
   } catch (err) {

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 config({ path: '.env' });
 
-// Recreate the dbConnect logic here for testing
+// Recreate the dbConnection logic here for testing
 const MONGODB_URI = process.env.MONGODB_URI || '';
 
 let cached = global.mongooseCache;
@@ -12,8 +12,8 @@ if (!cached) {
   cached = global.mongooseCache = { connection: null, promise: null };
 }
 
-async function testDbConnect() {
-  console.log('🔄 Testing your dbConnect logic...\n');
+async function testdbConnection() {
+  console.log('🔄 Testing your dbConnection logic...\n');
 
   try {
     if (MONGODB_URI === '') {
@@ -53,7 +53,7 @@ async function testDbConnect() {
 
     // Test caching by calling again
     console.log('\n🔄 Testing connection caching...');
-    const secondCall = await testDbConnect();
+    const secondCall = await testdbConnection();
 
     if (cached.connection === secondCall) {
       console.log('✅ Connection caching is working correctly!');
@@ -61,17 +61,17 @@ async function testDbConnect() {
       console.log('⚠️  Warning: Connection caching may not be working');
     }
 
-    console.log('\n🎉 Your dbConnect logic is working perfectly!');
+    console.log('\n🎉 Your dbConnection logic is working perfectly!');
 
     return cached.connection;
   } catch (error) {
-    console.error('❌ Error testing dbConnect logic:', error.message);
+    console.error('❌ Error testing dbConnection logic:', error.message);
     throw error;
   }
 }
 
 // Test the function
-testDbConnect()
+testdbConnection()
   .then(async (mongoose) => {
     if (mongoose) {
       await mongoose.connection.close();

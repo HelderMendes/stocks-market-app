@@ -1,16 +1,16 @@
-import dbConnect from './src/database/mongoose.ts';
+import dbConnection from './src/database/mongoose.ts';
 import { config } from 'dotenv';
 
 config({ path: '.env' });
 
-async function testActualDbConnect() {
-  console.log('🔄 Testing your actual dbConnect function...\n');
+async function testActualdbConnection() {
+  console.log('🔄 Testing your actual dbConnection function...\n');
 
   try {
-    console.log('🔄 Calling dbConnect()...');
-    const mongoose = await dbConnect();
+    console.log('🔄 Calling dbConnection()...');
+    const mongoose = await dbConnection();
 
-    console.log('✅ dbConnect() successful!');
+    console.log('✅ dbConnection() successful!');
     console.log('📊 Connection details:');
     console.log('  - Ready state:', mongoose.connection.readyState);
     console.log('  - Database name:', mongoose.connection.db.databaseName);
@@ -18,7 +18,7 @@ async function testActualDbConnect() {
 
     // Test the caching mechanism
     console.log('\n🔄 Testing connection caching...');
-    const mongoose2 = await dbConnect();
+    const mongoose2 = await dbConnection();
 
     if (mongoose === mongoose2) {
       console.log('✅ Connection caching is working correctly!');
@@ -26,15 +26,15 @@ async function testActualDbConnect() {
       console.log('⚠️  Warning: Connection caching may not be working');
     }
 
-    console.log('\n🎉 Your dbConnect function is working perfectly!');
+    console.log('\n🎉 Your dbConnection function is working perfectly!');
 
     // Close connection
     await mongoose.connection.close();
     console.log('🔌 Connection closed');
   } catch (error) {
-    console.error('❌ Error testing dbConnect function:', error.message);
+    console.error('❌ Error testing dbConnection function:', error.message);
     process.exit(1);
   }
 }
 
-testActualDbConnect().catch(console.error);
+testActualdbConnection().catch(console.error);

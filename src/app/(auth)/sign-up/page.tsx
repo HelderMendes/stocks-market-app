@@ -4,20 +4,16 @@ import CountrySelector from '@/components/forms/CountrySelector';
 import FooterLink from '@/components/forms/FooterLink';
 import InputField from '@/components/forms/InputField';
 import SelectField from '@/components/forms/SelectField';
-import { signUpWithEmail } from '@/lib/actions/auth.actions';
 import {
   INVESTMENT_GOALS,
   PREFERRED_INDUSTRIES,
   RISK_TOLERANCE_OPTIONS,
 } from '@/lib/constants';
 import { Eye, EyeOff } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 
 const SignUpPage = () => {
-  const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
   const {
     register,
@@ -38,22 +34,9 @@ const SignUpPage = () => {
   });
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      // Calling the sendSignUpEmail (inngest function) with server action
-      const result = await signUpWithEmail(data);
-      if (result && result.success) {
-        router.push('/');
-        toast.success('Account created successfully!');
-      } else if (result && 'error' in result && result.error) {
-        toast.error(result.error);
-      }
+      console.log(data);
     } catch (error) {
       console.error('Error during sign up: ', error);
-      toast.error('An unexpected error occurred during sign up.', {
-        description:
-          error instanceof Error
-            ? error.message
-            : 'failed to created an account',
-      });
     }
   };
 

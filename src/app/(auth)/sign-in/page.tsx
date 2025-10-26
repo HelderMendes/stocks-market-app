@@ -2,11 +2,15 @@
 
 import FooterLink from '@/components/forms/FooterLink';
 import InputField from '@/components/forms/InputField';
+import { signInWithEmail } from '@/lib/actions/auth.actions';
 import { Eye, EyeOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 const SignInPage = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
   const {
     register,
@@ -26,9 +30,15 @@ const SignInPage = () => {
 
   const onSubmit = async (data: SignInFormData) => {
     try {
-      console.log(data);
+      const result = await signInWithEmail(data); //Server action call
+      if (result.success) router.push('/');
     } catch (error) {
-      console.error('Error during sign in: ', error);
+      toast.error('sign in was not possible', {
+        description:
+          error instanceof Error
+            ? error.message
+            : 'An unexpected error occurred during sign in.',
+      });
     }
   };
 
